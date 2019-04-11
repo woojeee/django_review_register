@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>마블리</title>
+  </head>
+  <body>
+    <h2>제목 : {{ post.title }}</h2>
+    <h3>평점 : {{ post.point }}</h3>
+    <h3>가격 : {{ post.price }}</h3>
+    <h3>내용 <br /></h3>
+    <h4>
+      {{ post.contents }}
+    </h4>
+    <a href="{% url 'home' %}">리뷰 목록</a>
+  </body>
+</html>
