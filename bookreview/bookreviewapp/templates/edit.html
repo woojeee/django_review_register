@@ -7,19 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" type="text/css" href="{% static 'forall.css' %}?v=0.5" />
     <title>마블리</title>
-    
+  
   </head>
 
   <body>
     {% block content %}
     <div class="main">
-    <div class='new_wrapper'>
-    <div class='new_title'>리뷰는 신중히 쓰도록 한다</div>
-    <div class='new_form'>
+    <div class='edit_wrapper'>
+    <div class='edit_title'>수정은 신중히 한다</div>
+    <div class='edit_form'>
     <form method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">완료</button>
+      <button type="submit">수정</button>
     </form>
     </div>
     </div>

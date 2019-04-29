@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% extends "home.html" %} {% load staticfiles %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="{% static 'forall.css' %}?v=0.5" />
     <title>마블리</title>
+    
   </head>
+
   <body>
-    <h2>제목 : {{ post.title }}</h2>
-    <h3>평점 : {{ post.point }}</h3>
-    <h3>가격 : {{ post.price }}</h3>
-    <h3>내용 <br /></h3>
-    <h4>
+    {% block content %}
+    <div class="main">
+    <div class='detail_wrapper'>
+    <div class='detail_title'>제목 : {{ post.title }} </div>
+    <div class='detail_point'>평점 : {% if post.point == 1 %} ♥ {% elif post.point == 2 %} ♥♥ {% elif
+            post.point == 3 %} ♥♥♥ {% elif post.point == 4 %} ♥♥♥♥ {% else %}
+            ♥♥♥♥♥ {% endif %}</div>
+    <div class='detail_price'>가격 : {{ post.price }}</div>
+    <div class='detail_content'>
       {{ post.contents }}
-    </h4>
-    <a href="{% url 'home' %}">리뷰 목록</a>
+    </div>
+    <div class='detail_buttons'>
+    <div class='detail_list'><a href="{% url 'home' %}"></a></div>
+    <div class='detail_edit'><a href="{% url 'edit' post.pk %}"></a></div>
+    <div class='detail_delete'><a href="{% url 'delete' post.pk %}"></a></div>
+    </div>
+    </div>
+    </div>
+    {% endblock %}
   </body>
 </html>

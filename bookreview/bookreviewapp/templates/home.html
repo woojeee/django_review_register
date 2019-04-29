@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load staticfiles %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="{% static 'forall.css' %}?v=0.5" />
+    {% comment %} href 링크 뒤에 ?v=숫자 해서 버전 설정 해주면 업데이트.... 잘안되면 숫자 바꿔서 또 하기.. 캐쉬때문에 {% endcomment %}
     <title>마블리</title>
+    
+
   </head>
   <body>
-    <h1>♥마블리와 함께하는 책 리뷰♥</h1>
-    <h2>마블리의 책 리뷰</h2>
-    {% for post in posts %}
-    <li>
-      <a href="{% url 'detail' post.pk %}">{{ post.title }}</a>
-      {{ post.point }}점
-    </li>
-    <br />
-    {% endfor %}
-    <a href="{% url 'new' %}">리뷰작성</a>
+    <div class="profile">
+      <div class="profile_text" style="cursor:pointer" onclick="location.href='{% url 'home' %}'">
+      <div class='left_arm'></div>마블리의 브레인 벌크업<div class='right_arm'></div>
+      </div>
+      <div>
+      </div>
+    </div>
+
+    {% block content %}
+    <div class="main">
+    
+      <div class="home_wrapper">
+      
+      <div class='home_table'>
+      <table>
+        {% for post in posts %}
+        <tr>
+          <td class="book_title">
+            <a href="{% url 'detail' post.pk %}">{{ post.title }}</a>
+          </td>
+          <td class="point">
+            {% if post.point == 1 %} ♥ {% elif post.point == 2 %} ♥♥ {% elif
+            post.point == 3 %} ♥♥♥ {% elif post.point == 4 %} ♥♥♥♥ {% else %}
+            ♥♥♥♥♥ {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      </div>
+
+      <div class='home_review'><div class='review_button' style="cursor:pointer" onclick="location.href='{% url 'new' %}'"><div></div>
+
+      
+      </div>
+      
+    </div>
+    {% endblock %}
   </body>
 </html>
