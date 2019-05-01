@@ -72,6 +72,17 @@ a:active {
   align-items: center;
 }
 
+.submit {
+  background: url(post.png);
+  background-size: cover;
+  background-position: center center;
+  border: none;
+  padding: 0px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
 /* home */
 
 .main .home_wrapper {
@@ -213,6 +224,7 @@ a:active {
 .detail_buttons {
   display: flex;
   margin-top: 100px;
+  justify-content: flex-end;
 }
 
 .detail_buttons a {
@@ -245,4 +257,37 @@ a:active {
   background-image: url(delete_icon.png);
   background-size: cover;
   background-position: center center;
+}
+
+.detail_comment {
+  height: 500px;
+  margin-top: 150px;
+}
+.comment_content {
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 700px;
+}
+.comment_user {
+  font-weight: bold;
+  width: 100px;
+}
+
+.comment_date {
+  font-size: 0.6em;
+  width: 120px;
+}
+
+.comment_del {
+  height: 20px;
+  width: 20px;
+  background-image: url("delete.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+.comment_del a {
+  display: block;
+  height: 100%;
+  width: 100%;
 }

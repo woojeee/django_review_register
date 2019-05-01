@@ -5,29 +5,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" type="text/css" href="{% static 'forall.css' %}?v=0.5" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'forall.css' %}?v=0.6"
+    />
     <title>마블리</title>
-    
   </head>
 
   <body>
     {% block content %}
     <div class="main">
-    <div class='detail_wrapper'>
-    <div class='detail_title'>제목 : {{ post.title }} </div>
-    <div class='detail_point'>평점 : {% if post.point == 1 %} ♥ {% elif post.point == 2 %} ♥♥ {% elif
-            post.point == 3 %} ♥♥♥ {% elif post.point == 4 %} ♥♥♥♥ {% else %}
-            ♥♥♥♥♥ {% endif %}</div>
-    <div class='detail_price'>가격 : {{ post.price }}</div>
-    <div class='detail_content'>
-      {{ post.contents }}
-    </div>
-    <div class='detail_buttons'>
-    <div class='detail_list'><a href="{% url 'home' %}"></a></div>
-    <div class='detail_edit'><a href="{% url 'edit' post.pk %}"></a></div>
-    <div class='detail_delete'><a href="{% url 'delete' post.pk %}"></a></div>
-    </div>
-    </div>
+      <div class="detail_wrapper">
+        <div class="detail_title">제목 : {{ post.title }}</div>
+        <div class="detail_point">
+          평점 : {% if post.point == 1 %} ♥ {% elif post.point == 2 %} ♥♥ {%
+          elif post.point == 3 %} ♥♥♥ {% elif post.point == 4 %} ♥♥♥♥ {% else %}
+          ♥♥♥♥♥ {% endif %}
+        </div>
+        <div class="detail_price">가격 : {{ post.price }}</div>
+        <div class="detail_content">
+          {{ post.content }}
+        </div>
+        <div class="detail_buttons">
+          <div class="detail_list"><a href="{% url 'home' %}"></a></div>
+          <div class="detail_edit"><a href="{% url 'edit' post.pk %}"></a></div>
+          <div class="detail_delete">
+            <a href="{% url 'delete' post.pk %}"></a>
+          </div>
+        </div>
+        <div class="detail_comment">
+          <div class="comment_table">
+            <table>
+              {% for comment in post.comments.all %}
+              <tr>
+                <td class="comment_content">
+                  {{ comment.content }}
+                </td>
+                <td class="comment_user">
+                  {{ comment.user }}
+                </td>
+                <td class="comment_date">
+                  {{ comment.created_date }}
+                </td>
+                <td>
+                  <div class="comment_del">
+                    <a href="{% url 'comment_delete' post.pk comment.pk %}"></a>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+          <div class="new_comment">
+            <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button class="submit" type="submit"></button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     {% endblock %}
   </body>
