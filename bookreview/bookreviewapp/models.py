@@ -14,6 +14,7 @@ class Post(models.Model):
     )
 
     title = models.CharField(max_length=200)
+    img = models.FileField(null=True)
     price = models.IntegerField()
     point = models.IntegerField(choices=POINT, default=3)
     content = models.TextField()

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load staticfiles %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="{% static 'forall.css' %}?v=0.6" />
+    {% comment %} href 링크 뒤에 ?v=숫자 해서 버전 설정 해주면 업데이트.... 잘안되면 숫자 바꿔서 또 하기.. 캐쉬때문에 {% endcomment %}
+    <title>마블리</title>
+    
+
+  </head>
+  <body>
+    <div class="profile">
+      <div class="profile_text" style="cursor:pointer" onclick="location.href='{% url 'home' %}'">
+      <div class='left_arm'></div>마블리의 브레인 벌크업<div class='right_arm'></div>
+      </div>
+      <div>
+      </div>
+    </div>
+{% block content %}
+{% endblock %}
+    </body>
+</html>

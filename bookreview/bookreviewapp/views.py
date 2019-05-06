@@ -13,9 +13,9 @@ def home(request):
 
 def new(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         post = form.save(commit=False)
-        form.save()
+        post.save()
         return redirect('detail', post_pk=post.pk)
     else:
         form = PostForm()

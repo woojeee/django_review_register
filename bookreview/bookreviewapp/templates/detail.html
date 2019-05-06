@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  {% extends "home.html" %} {% load staticfiles %}
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'forall.css' %}?v=0.6"
-    />
-    <title>마블리</title>
-  </head>
 
-  <body>
+ {% extends "base.html" %}{% load staticfiles %}
+
     {% block content %}
     <div class="main">
       <div class="detail_wrapper">
         <div class="detail_title">제목 : {{ post.title }}</div>
+        <div class="detail_img">
+        <img class='imgimg' src="{{ post.img.url }}" />
+        </div>
         <div class="detail_point">
           평점 : {% if post.point == 1 %} ♥ {% elif post.point == 2 %} ♥♥ {%
           elif post.point == 3 %} ♥♥♥ {% elif post.point == 4 %} ♥♥♥♥ {% else %}
