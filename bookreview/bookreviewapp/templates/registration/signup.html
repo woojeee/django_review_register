@@ -1,0 +1,12 @@
+<!-- signup은 login이랑 다르게 장고 귀속 아니라서... 이름 다르게 써도 된다 -->
+{% extends 'base.html' %} {% block content %}
+<h2>회원가입</h2>
+<form method="POST">
+  {% if error %}
+  {{ error }}
+  {% endif %} {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="회원가입" />
+</form>
+
+{% endblock %}

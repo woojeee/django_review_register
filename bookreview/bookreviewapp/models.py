@@ -19,6 +19,7 @@ class Post(models.Model):
     point = models.IntegerField(choices=POINT, default=3)
     content = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+    author = models.CharField(max_length=50, default = "")
 
     def __str__(self):
         return self.title

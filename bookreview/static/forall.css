@@ -30,7 +30,7 @@ a:active {
   text-decoration: none;
 }
 
-.profile {
+.navbar {
   display: flex;
   width: 100%;
   height: 20%;
@@ -39,10 +39,11 @@ a:active {
   font-weight: bolder;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding-top: 5%;
 }
 
-.profile_text {
+.navbar_text {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,6 +63,18 @@ a:active {
   background-image: url(arm2.png);
   background-size: cover;
   background-position: center center;
+}
+
+.profile {
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+  font-size: 0.5em;
+  color: black;
+}
+
+.profile_item a {
+  color: rgb(28, 211, 22);
 }
 
 .main {

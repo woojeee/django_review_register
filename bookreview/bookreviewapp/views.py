@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, UserForm
 from .models import Post, Comment
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -10,11 +13,12 @@ def home(request):
     # 모든 포스트 오브젝트 할당
     return render(request, 'home.html', {'posts': posts})
 
-
+@login_required
 def new(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         post = form.save(commit=False)
+        post.author = request.user.get_username()
         post.save()
         return redirect('detail', post_pk=post.pk)
     else:
@@ -61,3 +65,17 @@ def comment_delete(request, post_pk, comment_pk):
     comment.delete()
 
     return redirect('detail', post_pk)
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            auth.login(request, new_user)
+            return redirect('home')
+    
+    else:
+        form = UserForm()
+        error = '장난치지 마라'
+        return render(request, 'registration/signup.html', { 'form': form, 'error': error })

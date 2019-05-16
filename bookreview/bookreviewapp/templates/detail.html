@@ -19,10 +19,12 @@
         </div>
         <div class="detail_buttons">
           <div class="detail_list"><a href="{% url 'home' %}"></a></div>
+        {% if user.is_authenticated and post.author == user.username %}
           <div class="detail_edit"><a href="{% url 'edit' post.pk %}"></a></div>
           <div class="detail_delete">
             <a href="{% url 'delete' post.pk %}"></a>
           </div>
+          {% endif %}
         </div>
         <div class="detail_comment">
           <div class="comment_table">
